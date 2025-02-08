@@ -1,0 +1,26 @@
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.dll
+*.so
+
+# C extensions
+*.egg-info/
+
+# Compiled JavaScript files
+*.js
+
+# Local configuration files
+*.env
+.env.local
+
+# Logs
+logs/
+
+# Directories to ignore
+.git/
+__pypackages__/
+build/
+dist/
