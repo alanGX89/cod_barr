@@ -54,9 +54,9 @@ class MyWindow(QWidget):
         # Añadir el layout del GIF al layout principal
         layout.addLayout(gif_layout)
         # Contador de cajas
-        self.box_count_label = QLabel("GIFT; 0", self)
+        self.box_count_label = QLabel("0", self)
         self.box_count_label.setAlignment(Qt.AlignLeft)
-        self.box_count_label.setStyleSheet("font-size: 16px; font-weight: bold; margin-left: 20px;")
+        self.box_count_label.setStyleSheet("font-size: 26px; font-weight: bold; margin-left: 20px;")
         gif_layout.addWidget(self.box_count_label)
 
         # Añadir el contenedor al layout principal
@@ -109,7 +109,15 @@ class MyWindow(QWidget):
 
     def save_code(self, code):
         self.table.setItem(self.current_row, self.current_col, QTableWidgetItem(code))
+        self.increment_box_count()
         self.update_box_count()
+
+    def increment_box_count(self):
+        self.box_count += 1
+
+    def update_box_count(self):
+        """Actualiza la etiqueta que muestra el número de cajas"""
+        self.box_count_label.setText(str(self.box_count))
 
     def move_cursor(self):
         total_cols = self.table.columnCount()
@@ -134,7 +142,7 @@ class MyWindow(QWidget):
         self.update_box_count()
 
     def update_box_count(self):
-        self.box_count_label.setText(f"GIFT; {self.box_count}")
+        self.box_count_label.setText(f"; {self.box_count}")
 
     def copy_table(self):
         clipboard = QApplication.clipboard()
@@ -154,7 +162,7 @@ class MyWindow(QWidget):
                 color: #333333;
             }
             QLabel {
-                color: #333333;
+                color: #555555;  /* Color gris suave para los textos de los labels */
                 font-size: 22px;
                 font-weight: bold;
                 margin-bottom: 10px;
@@ -164,16 +172,19 @@ class MyWindow(QWidget):
                 text-align: center;
             }
             QPushButton {
-                background-color: #4CAF50;
+                background-color: #d7dc35;  /* Amarillo suave */
                 color: white;
-                border-radius: 8px;
-                padding: 10px;
-                font-size: 14px;
+                border-radius: 12px;  /* Bordes más redondeados para botones más grandes */
+                padding: 15px 30px;  /* Aumenta el tamaño de los botones */
+                font-size: 16px;  /* Tamaño de fuente más grande */
                 font-weight: bold;
-                margin: 10px 5px;
+                margin: 15px 10px;  /* Mayor espacio entre los botones */
             }
             QPushButton:hover {
-                background-color: #45A049;
+                background-color: #FBC02D;  /* Amarillo más intenso al pasar el mouse */
+            }
+            QPushButton:pressed {
+                background-color: #F9A825;  /* Amarillo oscuro al presionar el botón */
             }
             QTableWidget {  
                 background-color: #FFFFFF;
@@ -188,6 +199,7 @@ class MyWindow(QWidget):
                 background-color: #80D4FF;
             }
         """)
+
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
