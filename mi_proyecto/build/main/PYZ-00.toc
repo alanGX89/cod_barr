@@ -85,6 +85,7 @@
   ('py_compile', 'C:\\Python38\\lib\\py_compile.py', 'PYMODULE'),
   ('quopri', 'C:\\Python38\\lib\\quopri.py', 'PYMODULE'),
   ('random', 'C:\\Python38\\lib\\random.py', 'PYMODULE'),
+  ('resource', '-', 'PYMODULE'),
   ('selectors', 'C:\\Python38\\lib\\selectors.py', 'PYMODULE'),
   ('shutil', 'C:\\Python38\\lib\\shutil.py', 'PYMODULE'),
   ('signal', 'C:\\Python38\\lib\\signal.py', 'PYMODULE'),

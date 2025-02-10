@@ -1,1 +1,10 @@
-#----->prueb\Scripts\activate
+# Activar el entorno virtual
+prueb\Scripts\activate
+
+# Instalar PyInstaller
+pip install pyinstaller
+
+# Crear el ejecutable con icono (reemplaza path/to/icon.ico por la ruta de tu icono)
+pyinstaller --onefile --windowed --add-data "path/to/icon.ico;." main.py
+
+# El ejecutable generado estará en la carpeta dist/
