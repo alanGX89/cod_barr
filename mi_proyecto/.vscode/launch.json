@@ -2,18 +2,24 @@
     "version": "0.2.0",
     "configurations": [
         {
+            "name": "Python Debugger: Current File",
+            "type": "debugpy",
+            "request": "launch",
+            "program": "${file}",
+            "console": "integratedTerminal"
+        },
+        {
             "name": "Python Debugger: main.py",
             "type": "debugpy",
             "request": "launch",
-            "program": "${workspaceFolder}/main.py",  // Asegúrate de que 'main.py' esté en la raíz de tu proyecto
+            "program": "${workspaceFolder}/main.py", // Asegúrate de que 'main.py' esté en la raíz de tu proyecto
             "console": "integratedTerminal",
             "env": {
-                "PYTHONPATH": "${workspaceFolder}"  // Para que Python vea el código de tu proyecto
+                "PYTHONPATH": "${workspaceFolder}" // Para que Python vea el código de tu proyecto
             },
-            "envFile": "${workspaceFolder}/.env",  // Si tienes variables de entorno personalizadas
-            "cwd": "${workspaceFolder}",  // Directorio de trabajo actual (raíz del proyecto)
-            "justMyCode": true,  // No se detendrá en bibliotecas externas
-            "python.pythonPath": "${workspaceFolder}/prueb/Scripts/python.exe"  // Ruta al ejecutable de Python en el entorno virtual (ajusta según tu sistema operativo)
+            "envFile": "${workspaceFolder}/.env", // Si tienes variables de entorno personalizadas
+            "cwd": "${workspaceFolder}", // Directorio de trabajo actual (raíz del proyecto)
+            "justMyCode": true, // No se detendrá en bibliotecas externas
         }
     ]
 }
