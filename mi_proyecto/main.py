@@ -20,10 +20,17 @@ class MyWindow(QWidget):
         # Layout principal
         layout = QVBoxLayout()
 
-        # Título con separación
+        # Título con estilo similar al de los botones
         self.title_label = QLabel("FILE ARDISA", self)
         self.title_label.setAlignment(Qt.AlignCenter)
-        self.title_label.setStyleSheet("font-size: 20px; font-weight: bold;")
+        self.title_label.setStyleSheet("""
+            font-size: 26px; 
+            font-weight: bold; 
+            color: white; 
+            background-color: #F9A825;
+            border-radius: 12px;
+            padding: 10px;
+        """)
         layout.addWidget(self.title_label)
         
         # Línea divisoria
@@ -34,8 +41,6 @@ class MyWindow(QWidget):
 
         # Contenedor para el GIF
         gif_layout = QHBoxLayout()
-
-        # Asegúrate de que el GIF esté centrado
         gif_layout.setAlignment(Qt.AlignCenter)  # Centra el contenido dentro del layout
 
         # Ruta del archivo GIF
@@ -53,6 +58,7 @@ class MyWindow(QWidget):
 
         # Añadir el layout del GIF al layout principal
         layout.addLayout(gif_layout)
+
         # Contador de cajas
         self.box_count_label = QLabel("0", self)
         self.box_count_label.setAlignment(Qt.AlignLeft)
@@ -166,31 +172,35 @@ class MyWindow(QWidget):
                 color: #333333;
             }
             QLabel {
-                color: #555555;  /* Color gris suave para los textos de los labels */
+                color: #555555;
                 font-size: 22px;
                 font-weight: bold;
                 margin-bottom: 10px;
             }
             QLabel#title_label {
-                color: #2196F3;
-                text-align: center;
+                font-size: 26px;
+                font-weight: bold;
+                background-color: #2196F3;
+                border-radius: 12px;
+                color: white;
+                padding: 10px;
             }
             QPushButton {
-                background-color: #d7dc35;  /* Amarillo suave */
+                background-color: #d7dc35;
                 color: white;
-                border-radius: 12px;  /* Bordes más redondeados para botones más grandes */
-                padding: 15px 30px;  /* Aumenta el tamaño de los botones */
-                font-size: 16px;  /* Tamaño de fuente más grande */
+                border-radius: 12px;
+                padding: 15px 30px;
+                font-size: 16px;
                 font-weight: bold;
-                margin: 15px 10px;  /* Mayor espacio entre los botones */
+                margin: 15px 10px;
             }
             QPushButton:hover {
-                background-color: #FBC02D;  /* Amarillo más intenso al pasar el mouse */
+                background-color: #FBC02D;
             }
             QPushButton:pressed {
-                background-color: #F9A825;  /* Amarillo oscuro al presionar el botón */
+                background-color: #F9A825;
             }
-            QTableWidget {  
+            QTableWidget {
                 background-color: #FFFFFF;
                 color: #333333;
                 gridline-color: #E0E0E0;
@@ -203,7 +213,6 @@ class MyWindow(QWidget):
                 background-color: #80D4FF;
             }
         """)
-
 
 if __name__ == "__main__":
     app = QApplication(sys.argv)
