@@ -108,15 +108,19 @@ class MyWindow(QWidget):
             self.buffer += event.text()
 
     def save_code(self, code):
+        # Asigna el código a la celda correspondiente
         self.table.setItem(self.current_row, self.current_col, QTableWidgetItem(code))
-        self.increment_box_count()
+    
+        # Verifica si ambas celdas de la fila actual están llenas
+        if self.table.item(self.current_row, 0) is not None and self.table.item(self.current_row, 1) is not None:
+            if self.table.item(self.current_row, 0).text() != "" and self.table.item(self.current_row, 1).text() != "":
+                self.increment_box_count()  # Si ambas celdas están llenas, incrementamos el contador
         self.update_box_count()
 
     def increment_box_count(self):
         self.box_count += 1
 
     def update_box_count(self):
-        """Actualiza la etiqueta que muestra el número de cajas"""
         self.box_count_label.setText(str(self.box_count))
 
     def move_cursor(self):
