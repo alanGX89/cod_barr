@@ -23,7 +23,7 @@ class MyWindow(QWidget):
         # Título con estilo similar al de los botones
         self.title_label = QLabel("FILE ARDISA", self)
         self.title_label.setAlignment(Qt.AlignCenter)
-        self.title_label.setStyleSheet("""
+        self.title_label.setStyleSheet(""" 
             font-size: 26px; 
             font-weight: bold; 
             color: white; 
@@ -32,7 +32,7 @@ class MyWindow(QWidget):
             padding: 10px;
         """)
         layout.addWidget(self.title_label)
-        
+
         # Línea divisoria
         line = QFrame()
         line.setFrameShape(QFrame.HLine)
@@ -81,28 +81,54 @@ class MyWindow(QWidget):
         # Botones en un layout horizontal centrado
         button_layout = QHBoxLayout()
         button_layout.setSpacing(10)
-        
+
         # Botón de limpiar
         self.clear_table_button = QPushButton("Limpiar Todo", self)
         self.clear_table_button.setIcon(QIcon(os.path.join(BASE_DIR, "assets", "clear.ico")))
         self.clear_table_button.clicked.connect(self.clear_table)
-        
+
         # Botón de copiar tabla
         self.copy_table_button = QPushButton("Copiar Tabla", self)
         self.copy_table_button.setIcon(QIcon(os.path.join(BASE_DIR, "assets", "copy.ico")))
         self.copy_table_button.clicked.connect(self.copy_table)
 
+        # Botón de borrar el código de la celda anterior
+        self.delete_previous_button = QPushButton("Borrar Código", self)
+        self.delete_previous_button.setIcon(QIcon(os.path.join(BASE_DIR, "assets", "delete.ico")))
+        self.delete_previous_button.clicked.connect(self.delete_previous_code)
+
         button_layout.addStretch()
         button_layout.addWidget(self.clear_table_button)
         button_layout.addWidget(self.copy_table_button)
+        button_layout.addWidget(self.delete_previous_button)  # Añadido el botón para borrar código
         button_layout.addStretch()
-        
+
         layout.addLayout(button_layout)
         self.setLayout(layout)
-        
+
         self.apply_custom_style()
         self.clear_table()
         self.tab_functionality()
+
+    def delete_previous_code(self):
+        """Función para borrar el código de la celda anterior y mover el cursor allí"""
+        # Comprobamos si estamos en la primera columna o fila
+        if self.current_row > 0 or self.current_col > 0:
+            prev_row = self.current_row
+            prev_col = self.current_col - 1 if self.current_col > 0 else self.current_col - 1
+            if prev_col < 0:  # Si estamos en la primera columna de la fila, retrocedemos a la fila anterior
+                prev_row -= 1
+                prev_col = self.table.columnCount() - 1  # Última columna de la fila anterior
+            
+            # Borra el contenido de la celda anterior
+            self.table.setItem(prev_row, prev_col, QTableWidgetItem(""))  
+            
+            # Mueve el cursor a la celda anterior
+            self.current_row, self.current_col = prev_row, prev_col  
+            self.table.setCurrentCell(self.current_row, self.current_col)  # Mueve el selector a la celda anterior
+
+            # Actualiza el contador de cajas
+            self.update_box_count()  
 
     def keyPressEvent(self, event):
         if event.key() == Qt.Key_Return:
@@ -116,11 +142,9 @@ class MyWindow(QWidget):
     def save_code(self, code):
         # Asigna el código a la celda correspondiente
         self.table.setItem(self.current_row, self.current_col, QTableWidgetItem(code))
-    
-        # Verifica si ambas celdas de la fila actual están llenas
         if self.table.item(self.current_row, 0) is not None and self.table.item(self.current_row, 1) is not None:
             if self.table.item(self.current_row, 0).text() != "" and self.table.item(self.current_row, 1).text() != "":
-                self.increment_box_count()  # Si ambas celdas están llenas, incrementamos el contador
+                self.increment_box_count()  # Incrementar el contador si ambas celdas están llenas
         self.update_box_count()
 
     def increment_box_count(self):
@@ -205,17 +229,21 @@ class MyWindow(QWidget):
                 color: #333333;
                 gridline-color: #E0E0E0;
                 font-size: 14px;
+                border: 1px solid #E0E0E0;  /* Reduces border size around the table */
             }
             QTableWidget::item {
-                padding: 10px;
+                padding: 5px;  /* Reduce padding inside the cells */
+                border: 1px solid #E0E0E0;  /* Adjust border for each cell */
             }
             QTableWidget::item:selected {
                 background-color: #80D4FF;
             }
         """)
 
+
 if __name__ == "__main__":
     app = QApplication(sys.argv)
     window = MyWindow()
+    window.clear_table()
     window.show()
     sys.exit(app.exec_())
