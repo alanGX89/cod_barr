@@ -1,4 +1,4 @@
-#!d:\fileardisa\software\cod_barr\mi_proyecto\prueb\scripts\python.exe
+#!D:\fileardisa\software\cod_barr\mi_proyecto\prueb\Scripts\python.exe
 
 # Copyright: This module has been placed in the public domain.
 

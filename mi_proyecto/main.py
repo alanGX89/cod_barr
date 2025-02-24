@@ -42,6 +42,19 @@ class MyWindow(QWidget):
         # Contenedor para el GIF
         gif_layout = QHBoxLayout()
         gif_layout.setAlignment(Qt.AlignCenter)  # Centra el contenido dentro del layout
+        def resource_path(relative_path):
+            """Obtiene la ruta del recurso, ya sea desde el .exe o desde el código fuente"""
+            try:
+                if getattr(sys, 'frozen', False):
+                    # Si el script se ejecuta desde el .exe
+                    base_path = sys._MEIPASS
+                else:
+                    # Si se está ejecutando desde el código fuente
+                    base_path = os.path.dirname(os.path.abspath(__file__))
+                return os.path.join(base_path, relative_path)
+            except Exception as e:
+                print(f"Error al obtener el recurso: {e}")
+                return None
 
         # Ruta del archivo GIF
         BASE_DIR = os.path.dirname(os.path.abspath(__file__))

@@ -1,4 +1,4 @@
-#!d:\fileardisa\software\cod_barr\mi_proyecto\prueb\scripts\python.exe
+#!D:\fileardisa\software\cod_barr\mi_proyecto\prueb\Scripts\python.exe
 
 # Author:
 # Contact: grubert@users.sf.net

@@ -1,4 +1,4 @@
-#!d:\fileardisa\software\cod_barr\mi_proyecto\prueb\scripts\python.exe
+#!D:\fileardisa\software\cod_barr\mi_proyecto\prueb\Scripts\python.exe
 # :Copyright: © 2015 Günter Milde.
 # :License: Released under the terms of the `2-Clause BSD license`_, in short:
 #

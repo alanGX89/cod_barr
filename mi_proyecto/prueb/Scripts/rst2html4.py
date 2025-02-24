@@ -1,4 +1,4 @@
-#!d:\fileardisa\software\cod_barr\mi_proyecto\prueb\scripts\python.exe
+#!D:\fileardisa\software\cod_barr\mi_proyecto\prueb\Scripts\python.exe
 
 # $Id: rst2html4.py 9115 2022-07-28 17:06:24Z milde $
 # Author: David Goodger <goodger@python.org>
